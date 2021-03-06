@@ -1,0 +1,66 @@
+ 
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css" integrity="sha512-P5MgMn1jBN01asBgU0z60Qk4QxiXo86+wlFahKrsQf37c9cro517WzVSPPV1tDKzhku2iJ2FVgL67wG03SGnNA==" crossorigin="anonymous" />
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+ 
+ 
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js" integrity="sha512-XKa9Hemdy1Ui3KSGgJdgMyYlUg1gM+QhL6cnlyTe2qzMCYm4nAZ1PsVerQzTTXzonUR+dmswHqgJPuwCq1MaAg==" crossorigin="anonymous"></script>
+
+
+
+ <div style="float: right;">
+    <input class="btn btn-secondary" type="button" (click)="toogleButton()" value="Edit On/Off"/>
+    <input class="btn btn-secondary" type="button" (click)="toogleButtonDelete()" value="Delete On/Off"/>
+</div>
+
+
+
+ <br/>
+ <br/> 
+ <div class="row">
+    <div class="col-md-3">
+        <app-person></app-person>
+    </div>
+    
+    <div class="col-md-9">
+        <table class="table table-striped">
+            <thead class="thead-light">
+                <tr>
+                    <th>Sl.</th>
+                    <th>F Name</th>
+                    <th>L Name</th>
+                    <th>DOB</th>
+                    <th>Address</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let person of service.list">
+                    <td>{{person.personId}}</td>
+                    <td>{{person.fName}}</td>
+                    <td>{{person.lName}}</td>
+                    <td>{{person.address}}</td>
+                    <td>{{person.dob}}</td>                    
+                    <td>{{person.email}}</td>
+                    <td>{{person.phone}}</td>
+
+                    <td *ngIf="showEdit">
+                        <i class="fas fa-edit fa-lg text-warning" (click)="populateForm(person)"></i>
+                    </td>
+
+                    <td *ngIf="showDelete">
+                        <i class="fa fa-trash-alt fa-lg text-danger" (click)="onDelete(person.personId)"></i>
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+ </div>
+<div>
+    
+</div>
+

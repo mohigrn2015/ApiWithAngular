@@ -26,42 +26,58 @@ namespace OnlineTestRestfullApi.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<object>>> GetPersons()
         {
-            var liat = (from p in _context.Persons
-                        select new
-                        {
-                            p.PersonId,
-                            p.FName,
-                            p.LName,
-                            p.Dob,
-                            p.Address,
-                            p.Email,
-                            p.Phone
-                        }).ToListAsync();
-            return await liat;
+            try
+            {
+                var liat = (from p in _context.Persons
+                            select new
+                            {
+                                p.PersonId,
+                                p.FName,
+                                p.LName,
+                                p.Dob,
+                                p.Address,
+                                p.Email,
+                                p.Phone
+                            }).ToListAsync();
+                return await liat;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<object>> GetPerson(int id)
         {
-            var person = (from p in _context.Persons
-                          where p.PersonId==id
-                          select new
-                          {
-                              p.PersonId,
-                              p.FName,
-                              p.LName,
-                              p.Dob,
-                              p.Address,
-                              p.Email,
-                              p.Phone                              
-                          }).ToListAsync();            
-
-            if (person == null)
+            try
             {
-                return NotFound();
-            }
+                var person = (from p in _context.Persons
+                              where p.PersonId == id
+                              select new
+                              {
+                                  p.PersonId,
+                                  p.FName,
+                                  p.LName,
+                                  p.Dob,
+                                  p.Address,
+                                  p.Email,
+                                  p.Phone
+                              }).ToListAsync();
 
-            return await person;
+                if (String.IsNullOrEmpty(person.Id.ToString()))
+                {
+                    return NotFound();
+                }
+
+                return await person;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            
         }
 
         
@@ -70,26 +86,26 @@ namespace OnlineTestRestfullApi.Controllers
         {
             Person p;
 
-            if (id != person.PersonId)
-            {
-                return BadRequest();
-            }
-
-            if (person.PersonId !=0)
-            {
-                p = new Person();
-                p.FName = person.FName;
-                p.LName = person.LName;
-                p.Dob = person.Dob;
-                p.Address = person.Address;
-                p.Email = person.Email;
-                p.Phone = person.Phone;
-            }
-
-            _context.Entry(person).State = EntityState.Modified;
-
             try
             {
+                if (id != person.PersonId)
+                {
+                    return BadRequest();
+                }
+
+                if (person.PersonId != 0)
+                {
+                    p = new Person();
+                    p.FName = person.FName;
+                    p.LName = person.LName;
+                    p.Dob = person.Dob;
+                    p.Address = person.Address;
+                    p.Email = person.Email;
+                    p.Phone = person.Phone;
+                }
+
+                _context.Entry(person).State = EntityState.Modified;
+
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
@@ -111,45 +127,71 @@ namespace OnlineTestRestfullApi.Controllers
         [HttpPost]
         public async Task<ActionResult<Person>> PostPerson([FromBody]Person person)
         {
-            Person p;
-            if (person.PersonId == 0)
+            Person p = new Person();
+            try
             {
-                p = new Person();
-                p.FName = person.FName;
-                p.LName = person.LName;
-                p.Address = person.Address;
-                p.Dob = person.Dob;
-                p.Email = person.Email;
-                p.Phone = person.Phone;
+                if (person.PersonId.Equals(0))
+                {
+                    p = new Person();
+                    p.FName = person.FName;
+                    p.LName = person.LName;
+                    p.Address = person.Address;
+                    p.Dob = person.Dob;
+                    p.Email = person.Email;
+                    p.Phone = person.Phone;
 
+                    _context.Persons.Add(p);
+                    await _context.SaveChangesAsync();
+                }
+                else
+                {
+                    return NoContent();
+                }
+                return CreatedAtAction("GetPerson", new { id = person.PersonId }, person);
             }
-            _context.Persons.Add(person);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetPerson", new { id = person.PersonId }, person);
+            catch (Exception ex )
+            {
+                throw;
+            }
+            
         }
 
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletePerson(int id)
         {
-            var person = await _context.Persons.FindAsync(id);
-            if (person == null)
+            try
             {
-                return NotFound();
+                var person = await _context.Persons.FindAsync(id);
+                if (String.IsNullOrEmpty(person.PersonId.ToString()))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    _context.Persons.Remove(person);
+                    await _context.SaveChangesAsync();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                _context.Persons.Remove(person);
-                await _context.SaveChangesAsync();
-            }       
+                throw;
+            }          
             
             return NoContent();
         }
 
         private bool PersonExists(int id)
         {
-            return _context.Persons.Any(e => e.PersonId == id);
+            try
+            {
+                return _context.Persons.Any(e => e.PersonId == id);
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
     }
 }

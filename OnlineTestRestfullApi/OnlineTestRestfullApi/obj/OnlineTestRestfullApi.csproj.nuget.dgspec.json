@@ -1,24 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "E:\\LabTest\\Last\\Projects\\OnlineTestRestfullApi\\OnlineTestRestfullApi\\OnlineTestRestfullApi.csproj": {}
+    "G:\\ProjectRearranged\\AngularTestWithAPI\\ApiWithAngular\\OnlineTestRestfullApi\\OnlineTestRestfullApi\\OnlineTestRestfullApi.csproj": {}
   },
   "projects": {
-    "E:\\LabTest\\Last\\Projects\\OnlineTestRestfullApi\\OnlineTestRestfullApi\\OnlineTestRestfullApi.csproj": {
+    "G:\\ProjectRearranged\\AngularTestWithAPI\\ApiWithAngular\\OnlineTestRestfullApi\\OnlineTestRestfullApi\\OnlineTestRestfullApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\LabTest\\Last\\Projects\\OnlineTestRestfullApi\\OnlineTestRestfullApi\\OnlineTestRestfullApi.csproj",
+        "projectUniqueName": "G:\\ProjectRearranged\\AngularTestWithAPI\\ApiWithAngular\\OnlineTestRestfullApi\\OnlineTestRestfullApi\\OnlineTestRestfullApi.csproj",
         "projectName": "OnlineTestRestfullApi",
-        "projectPath": "E:\\LabTest\\Last\\Projects\\OnlineTestRestfullApi\\OnlineTestRestfullApi\\OnlineTestRestfullApi.csproj",
-        "packagesPath": "C:\\Users\\LAB-1\\.nuget\\packages\\",
-        "outputPath": "E:\\LabTest\\Last\\Projects\\OnlineTestRestfullApi\\OnlineTestRestfullApi\\obj\\",
+        "projectPath": "G:\\ProjectRearranged\\AngularTestWithAPI\\ApiWithAngular\\OnlineTestRestfullApi\\OnlineTestRestfullApi\\OnlineTestRestfullApi.csproj",
+        "packagesPath": "C:\\Users\\mohig\\.nuget\\packages\\",
+        "outputPath": "G:\\ProjectRearranged\\AngularTestWithAPI\\ApiWithAngular\\OnlineTestRestfullApi\\OnlineTestRestfullApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\LAB-1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\mohig\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
@@ -100,7 +99,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
         }
       }
     }
